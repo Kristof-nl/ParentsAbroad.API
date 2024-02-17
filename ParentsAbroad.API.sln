@@ -4,16 +4,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.API", "ParentsAbroad.API\ParentsAbroad.API.csproj", "{5A094BFD-AFB4-4FF1-9BAE-5F8B5D6EAF13}"
+	ProjectSection(ProjectDependencies) = postProject
+		{540CACB6-AE53-4BF0-92F0-22A456343598} = {540CACB6-AE53-4BF0-92F0-22A456343598}
+		{8DABFC79-C0B8-4B87-BF4C-909020CA744A} = {8DABFC79-C0B8-4B87-BF4C-909020CA744A}
+		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
+		{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9} = {C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Contracts", "ParentsAbroad.Contracts\ParentsAbroad.Contracts.csproj", "{EAC186F9-C53B-4E19-86D6-1C6F871D64D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Models", "ParentsAbroad.Models\ParentsAbroad.Models.csproj", "{B63758E0-5A9E-410D-87CC-52910F46A93B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EAC186F9-C53B-4E19-86D6-1C6F871D64D4} = {EAC186F9-C53B-4E19-86D6-1C6F871D64D4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Interfaces", "ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj", "{540CACB6-AE53-4BF0-92F0-22A456343598}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
+		{EAC186F9-C53B-4E19-86D6-1C6F871D64D4} = {EAC186F9-C53B-4E19-86D6-1C6F871D64D4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Services", "ParentsAbroad.Services\ParentsAbroad.Services.csproj", "{8DABFC79-C0B8-4B87-BF4C-909020CA744A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{540CACB6-AE53-4BF0-92F0-22A456343598} = {540CACB6-AE53-4BF0-92F0-22A456343598}
+		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Repositories", "ParentsAbroad.Repositories\ParentsAbroad.Repositories.csproj", "{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{540CACB6-AE53-4BF0-92F0-22A456343598} = {540CACB6-AE53-4BF0-92F0-22A456343598}
+		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
