@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj" />
+    <ProjectReference Include="..\ParentsAbroad.Models\ParentsAbroad.Models.csproj" />
+  </ItemGroup>
+
 </Project>
