@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -17,7 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj" />
     <ProjectReference Include="..\ParentsAbroad.Models\ParentsAbroad.Models.csproj" />
+    <ProjectReference Include="..\ParentsAbroad.Repositories\ParentsAbroad.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

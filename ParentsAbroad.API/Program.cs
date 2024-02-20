@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ParentsAbroad.API.Config;
 using ParentsAbroad.Models.DataContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +10,16 @@ builder.Services.AddDbContext<ParentsAbroadDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ParentsAbroadConnection"));
 });
 
+builder.Services.RegisterServices();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

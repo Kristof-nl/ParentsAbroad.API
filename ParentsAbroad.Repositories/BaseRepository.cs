@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ParentsAbroad.Interfaces.Repositories;
 using ParentsAbroad.Models.DataContext;
+using ParentsAbroad.Models.Models.Interfaces;
 using System.Linq.Expressions;
 
 namespace ParentsAbroad.Repositories
 
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
     {
         private readonly ParentsAbroadDbContext _context;
         private DbSet<T> _dbSet;
@@ -17,20 +18,23 @@ namespace ParentsAbroad.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<T> SaveOrUpdate(T entity, int id)
+        public async Task<T> SaveOrUpdate(T entity)
         {
-            if (id == 0) 
-            { 
+            if (entity.Id == 0)
+            {
                 _dbSet.Add(entity);
             }
             else
             {
-                var existingEntity = _dbSet.FirstOrDefault(x => x. == id);
+                var existingEntity = _dbSet.FirstOrDefault(x => x.Id == entity.Id);
 
-                if (existingEntity != null)
+                if (existingEntity == null)
                 {
-                    _dbSet.Entry(existingEntity).CurrentValues.SetValues(entity);
+                    throw new Exception($"Entity with id:{entity.Id} not found");
                 }
+
+                _dbSet.Entry(existingEntity).CurrentValues.SetValues(entity);
+                
             }
 
             await _context.SaveChangesAsync();
@@ -38,15 +42,17 @@ namespace ParentsAbroad.Repositories
             return entity;
         }
 
-        public async Task<bool> DeleteAsync(int Id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var existingEntity = _dbSet.FirstOrDefault(x => x.Id == entity.Id);
+            var existingEntity = _dbSet.FirstOrDefault(x => x.Id == id);
 
-            if (existingEntity != null) 
+            if (existingEntity == null)
             {
-                _dbSet.Remove(existingEntity);
-                return await _context.SaveChangesAsync() > 0;
+                throw new Exception($"Entity with id:{id} not found");
             }
+
+            _dbSet.Remove(existingEntity);
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<IList<T>> GetAllAsync()
@@ -54,7 +60,7 @@ namespace ParentsAbroad.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<IList<T>> GetByAsync(Expression<Func<T, bool>> filter )
+        public async Task<IList<T>> GetByAsync(Expression<Func<T, bool>> filter)
         {
             return await _dbSet.Where(filter).ToListAsync();
         }

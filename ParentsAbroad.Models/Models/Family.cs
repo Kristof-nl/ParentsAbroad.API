@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ParentsAbroad.Models.Models.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace ParentsAbroad.Models.Models
 {
-    public class Family
+    public class Family : IEntity
     {
         [Key]
         public int Id { get; set; }

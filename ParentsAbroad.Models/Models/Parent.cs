@@ -1,6 +1,8 @@
-﻿namespace ParentsAbroad.Models.Models
+﻿using ParentsAbroad.Models.Models.Interfaces;
+
+namespace ParentsAbroad.Models.Models
 {
-    public class Parent : Person
+    public class Parent : Person, IEntity
     {
     }
 }
