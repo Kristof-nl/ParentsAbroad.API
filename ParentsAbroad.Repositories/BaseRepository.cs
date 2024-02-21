@@ -18,7 +18,7 @@ namespace ParentsAbroad.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<T> SaveOrUpdate(T entity)
+        public async Task<T> SaveOrUpdateAsync(T entity)
         {
             if (entity.Id == 0)
             {
@@ -63,6 +63,11 @@ namespace ParentsAbroad.Repositories
         public async Task<IList<T>> GetByAsync(Expression<Func<T, bool>> filter)
         {
             return await _dbSet.Where(filter).ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(long id)
+        {
+            return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

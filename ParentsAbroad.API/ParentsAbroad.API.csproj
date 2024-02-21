@@ -17,9 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ParentsAbroad.Contracts\ParentsAbroad.Contracts.csproj" />
     <ProjectReference Include="..\ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj" />
     <ProjectReference Include="..\ParentsAbroad.Models\ParentsAbroad.Models.csproj" />
     <ProjectReference Include="..\ParentsAbroad.Repositories\ParentsAbroad.Repositories.csproj" />
+    <ProjectReference Include="..\ParentsAbroad.Services\ParentsAbroad.Services.csproj" />
   </ItemGroup>
 
 </Project>
