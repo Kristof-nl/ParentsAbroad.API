@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ParentsAbroad.Contracts\ParentsAbroad.Contracts.csproj" />
     <ProjectReference Include="..\ParentsAbroad.Models\ParentsAbroad.Models.csproj" />
   </ItemGroup>
 

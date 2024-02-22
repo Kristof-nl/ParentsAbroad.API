@@ -1,6 +1,6 @@
 ﻿namespace ParentsAbroad.Contracts
 {
-    public class ParentDto : PersonDto
+    public class PersonCreateUpdateDto
     {
     }
 }
