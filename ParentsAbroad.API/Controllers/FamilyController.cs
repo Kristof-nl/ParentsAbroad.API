@@ -5,7 +5,7 @@ using ParentsAbroad.Contracts;
 namespace ParentsAbroad.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/family")]
     public class FamilyController : ControllerBase
     {
         private readonly IFamilyService _familyService;
@@ -16,7 +16,7 @@ namespace ParentsAbroad.API.Controllers
         }
 
         [HttpGet]
-        [Route("family/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<FamilyDto>> GetFamilyById( [FromRoute] long id)
         {
             var familyDto = await _familyService.GetByIdAsync(id);
@@ -33,10 +33,27 @@ namespace ParentsAbroad.API.Controllers
 
 
         [HttpPost]
-        [Route("family/add")]
+        [Route("add")]
         public async Task<ActionResult<FamilyDto>> AddFamily([FromBody] FamilyCreateUpdateDto familyCreateDto)
         {
             var familiesDto = await _familyService.AddAsync(familyCreateDto);
+            return Ok(familiesDto);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task<ActionResult<FamilyDto>> UpdateFamily([FromBody] FamilyCreateUpdateDto familyCreateDto)
+        {
+            var familiesDto = await _familyService.UpdateAsync(familyCreateDto);
+            return Ok(familiesDto);
+        }
+
+
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task<ActionResult<FamilyDto>> UpdateFamily([FromRoute] long id)
+        {
+            var familiesDto = await _familyService.DeleteAsync(id);
             return Ok(familiesDto);
         }
 

@@ -42,7 +42,7 @@ namespace ParentsAbroad.Repositories
             return entity;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(long id)
         {
             var existingEntity = _dbSet.FirstOrDefault(x => x.Id == id);
 

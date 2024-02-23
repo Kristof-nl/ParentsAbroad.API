@@ -46,28 +46,28 @@ namespace ParentsAbroad.Services
 
         public async Task<FamilyDto> AddAsync(FamilyCreateUpdateDto familyCreateDto)
         {
-            if (familyCreateDto.Id != null || familyCreateDto.Id > 0)
+            if (familyCreateDto.Id > 0)
             {
                 throw new Exception("This item can't be added");
             }
 
             var family = _mapper.Map<Family>(familyCreateDto);
 
-            var familyFromDb = _familyRepository.SaveOrUpdateAsync(family);
+            var familyFromDb = await _familyRepository.SaveOrUpdateAsync(family);
 
             return _mapper.Map<FamilyDto>(familyFromDb);
         }
 
-        public async Task<FamilyDto> UpdateAsync(FamilyCreateUpdateDto familUpdateDto)
+        public async Task<FamilyDto> UpdateAsync(FamilyCreateUpdateDto familyUpdateDto)
         {
-            if (familUpdateDto.Id == null || familUpdateDto.Id == 0)
+            if (familyUpdateDto.Id == null || familyUpdateDto.Id == 0)
             {
                 throw new Exception("This item can't be updated");
             }
 
-            var family = _mapper.Map<Family>(familUpdateDto);
+            var family = _mapper.Map<Family>(familyUpdateDto);
 
-            var familyFromDb = _familyRepository.SaveOrUpdateAsync(family);
+            var familyFromDb = await _familyRepository.SaveOrUpdateAsync(family);
 
             return _mapper.Map<FamilyDto>(familyFromDb);
         }
@@ -75,7 +75,16 @@ namespace ParentsAbroad.Services
 
         public async Task<bool> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            var family = await _familyRepository.GetByIdAsync(id);
+
+            if (family == null)
+            {
+                throw new Exception($"Family with id: {id} not found");
+            }
+            else
+            {
+                return await _familyRepository.DeleteAsync(id);
+            }
         }
     }
 }

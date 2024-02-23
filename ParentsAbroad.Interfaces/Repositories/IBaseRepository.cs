@@ -8,6 +8,6 @@ namespace ParentsAbroad.Interfaces.Repositories
         Task<IList<T>> GetByAsync(Expression<Func<T, bool>> filter);
         Task<T> GetByIdAsync(long id);
         Task<T> SaveOrUpdateAsync(T entity);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(long id);
     }
 }
