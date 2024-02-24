@@ -15,7 +15,7 @@ namespace ParentsAbroad.API.Config
             CreateMap<ChildCreateUpdateDto, Child>();
 
             CreateMap<Parent, ParentDto>();
-            CreateMap<ParentCreateUpdateDto, Child>();
+            CreateMap<ParentCreateUpdateDto, Parent>();
 
         }
     }

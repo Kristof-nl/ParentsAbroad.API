@@ -19,9 +19,9 @@ namespace ParentsAbroad.Services
         }
 
 
-        public async Task<IList<FamilyDto>> GetAllAsync()
+        public async Task<IList<FamilyDto>> GetAllAsync(bool withRelations)
         {
-            var families = await _familyRepository.GetAllAsync();
+            var families = withRelations ? await _familyRepository.GetFamiliesWithRelationsAsync() : await _familyRepository.GetAllAsync();
             return _mapper.Map<IList<FamilyDto>>(families);
         }
 

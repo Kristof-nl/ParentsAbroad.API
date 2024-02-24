@@ -11,12 +11,13 @@ namespace ParentsAbroad.Models.DataContext
             
         }
 
-        DbSet<Family> Families { get; set; }
-        DbSet<Parent> Children { get; set; }
-        DbSet<Parent> Parents { get; set; }
+        public DbSet<Family> Families { get; set; }
+        public DbSet<Parent> Children { get; set; }
+        public DbSet<Parent> Parents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new FamilyConfig());
             modelBuilder.ApplyConfiguration(new ChildConfig());
             modelBuilder.ApplyConfiguration(new ParentConfig());
         }

@@ -8,7 +8,7 @@ namespace ParentsAbroad.Interfaces.Services
     {
         Task<FamilyDto> GetByAsync(Expression<Func<Family, bool>> filter);
         Task<FamilyDto> GetByIdAsync(long id);
-        Task<IList<FamilyDto>> GetAllAsync();
+        Task<IList<FamilyDto>> GetAllAsync(bool withRelations);
         Task<FamilyDto> AddAsync(FamilyCreateUpdateDto family);
         Task<FamilyDto> UpdateAsync(FamilyCreateUpdateDto family);
         Task<bool> DeleteAsync(long id);

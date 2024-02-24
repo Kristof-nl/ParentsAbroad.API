@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj" />
+    <ProjectReference Include="..\ParentsAbroad.Shared\ParentsAbroad.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ namespace ParentsAbroad.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
     {
         private readonly ParentsAbroadDbContext _context;
-        private DbSet<T> _dbSet;
+        private readonly DbSet<T> _dbSet;
 
         public BaseRepository(ParentsAbroadDbContext context)
         {

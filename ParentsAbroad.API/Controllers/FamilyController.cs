@@ -25,38 +25,34 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("families")]
-        public async Task<ActionResult<FamilyDto>> GetAllFamilies()
+        public async Task<ActionResult<IList<FamilyDto>>> GetAllFamilies([FromQuery] bool withRelations = true)
         {
-            var familiesDto = await _familyService.GetAllAsync();
+            var familiesDto = await _familyService.GetAllAsync(withRelations);
             return Ok(familiesDto);
         }
-
 
         [HttpPost]
         [Route("add")]
         public async Task<ActionResult<FamilyDto>> AddFamily([FromBody] FamilyCreateUpdateDto familyCreateDto)
         {
-            var familiesDto = await _familyService.AddAsync(familyCreateDto);
-            return Ok(familiesDto);
+            var familyDto = await _familyService.AddAsync(familyCreateDto);
+            return Ok(familyDto);
         }
 
         [HttpPut]
         [Route("update")]
         public async Task<ActionResult<FamilyDto>> UpdateFamily([FromBody] FamilyCreateUpdateDto familyCreateDto)
         {
-            var familiesDto = await _familyService.UpdateAsync(familyCreateDto);
-            return Ok(familiesDto);
+            var familyDto = await _familyService.UpdateAsync(familyCreateDto);
+            return Ok(familyDto);
         }
-
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<ActionResult<FamilyDto>> UpdateFamily([FromRoute] long id)
+        public async Task<ActionResult<bool>> DeleteFamily([FromRoute] long id)
         {
-            var familiesDto = await _familyService.DeleteAsync(id);
-            return Ok(familiesDto);
+            var deleted = await _familyService.DeleteAsync(id);
+            return Ok(deleted);
         }
-
-
     }
 }

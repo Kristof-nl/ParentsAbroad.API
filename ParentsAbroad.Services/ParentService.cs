@@ -3,6 +3,7 @@ using ParentsAbroad.Contracts;
 using ParentsAbroad.Interfaces.Repositories;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Models.Models;
+using ParentsAbroad.Shared.Helpers;
 using System.Linq.Expressions;
 
 namespace ParentsAbroad.Services
@@ -18,6 +19,12 @@ namespace ParentsAbroad.Services
             _mapper = mapper;
         }
 
+
+        public async Task<IList<ParentDto>> GetAllParentsFromFamilyAsync(long familyId)
+        {
+            var parents = await _parentRepository.GetByAsync(x => x.FamilyId == familyId);
+            return _mapper.Map<IList<ParentDto>>(parents);
+        }
 
         public async Task<IList<ParentDto>> GetAllAsync()
         {
@@ -50,6 +57,15 @@ namespace ParentsAbroad.Services
             {
                 throw new Exception("This item can't be added");
             }
+
+            if (GetAllParentsFromFamilyAsync(parentCreateDto.FamilyId).Result.Count == 2 ) 
+            {
+                throw new Exception("There are already two parents added to this family. In not possible to add more");
+            }
+
+            // Because of legal purpose parent need be at least 18 years old
+            IsParentToYoung(parentCreateDto.DateOfBirth);
+
 
             var parent = _mapper.Map<Parent>(parentCreateDto);
 
@@ -85,6 +101,14 @@ namespace ParentsAbroad.Services
             {
                 return await _parentRepository.DeleteAsync(id);
             }
+        }
+
+        private void IsParentToYoung(DateTime birthDate)
+        {
+           if (!DateTimeHelper.GetDifferenceInYears(birthDate))
+           {
+               throw new Exception($"You are to young to register as parent role");
+           }
         }
     }
 }

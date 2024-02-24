@@ -11,30 +11,32 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.API", "Parent
 		{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9} = {C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Contracts", "ParentsAbroad.Contracts\ParentsAbroad.Contracts.csproj", "{EAC186F9-C53B-4E19-86D6-1C6F871D64D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.Contracts", "ParentsAbroad.Contracts\ParentsAbroad.Contracts.csproj", "{EAC186F9-C53B-4E19-86D6-1C6F871D64D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Models", "ParentsAbroad.Models\ParentsAbroad.Models.csproj", "{B63758E0-5A9E-410D-87CC-52910F46A93B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.Models", "ParentsAbroad.Models\ParentsAbroad.Models.csproj", "{B63758E0-5A9E-410D-87CC-52910F46A93B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EAC186F9-C53B-4E19-86D6-1C6F871D64D4} = {EAC186F9-C53B-4E19-86D6-1C6F871D64D4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Interfaces", "ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj", "{540CACB6-AE53-4BF0-92F0-22A456343598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.Interfaces", "ParentsAbroad.Interfaces\ParentsAbroad.Interfaces.csproj", "{540CACB6-AE53-4BF0-92F0-22A456343598}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
 		{EAC186F9-C53B-4E19-86D6-1C6F871D64D4} = {EAC186F9-C53B-4E19-86D6-1C6F871D64D4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Services", "ParentsAbroad.Services\ParentsAbroad.Services.csproj", "{8DABFC79-C0B8-4B87-BF4C-909020CA744A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.Services", "ParentsAbroad.Services\ParentsAbroad.Services.csproj", "{8DABFC79-C0B8-4B87-BF4C-909020CA744A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{540CACB6-AE53-4BF0-92F0-22A456343598} = {540CACB6-AE53-4BF0-92F0-22A456343598}
 		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Repositories", "ParentsAbroad.Repositories\ParentsAbroad.Repositories.csproj", "{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParentsAbroad.Repositories", "ParentsAbroad.Repositories\ParentsAbroad.Repositories.csproj", "{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{540CACB6-AE53-4BF0-92F0-22A456343598} = {540CACB6-AE53-4BF0-92F0-22A456343598}
 		{B63758E0-5A9E-410D-87CC-52910F46A93B} = {B63758E0-5A9E-410D-87CC-52910F46A93B}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParentsAbroad.Shared", "ParentsAbroad.Shared\ParentsAbroad.Shared.csproj", "{4E9D9BA4-BFD2-40BB-A1AD-6DCAAA3F3EA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +68,10 @@ Global
 		{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9484632-597C-4A3B-9E4A-E0F2DEEFB1F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E9D9BA4-BFD2-40BB-A1AD-6DCAAA3F3EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9D9BA4-BFD2-40BB-A1AD-6DCAAA3F3EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9D9BA4-BFD2-40BB-A1AD-6DCAAA3F3EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9D9BA4-BFD2-40BB-A1AD-6DCAAA3F3EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
