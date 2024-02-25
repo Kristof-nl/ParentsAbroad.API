@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParentsAbroad.Contracts;
 using ParentsAbroad.Interfaces.Services;
+using ParentsAbroad.Shared.Dto;
 
 namespace ParentsAbroad.API.Controllers
 {
@@ -42,7 +43,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpPost]
         [Route("addtofamily")]
-        public async Task<ActionResult<ParentDto>> AddParentToFamily([FromBody] ParentCreateUpdateDto parentCreateDto)
+        public async Task<ActionResult<ResponseResult<ParentDto>>> AddParentToFamily([FromBody] ParentCreateUpdateDto parentCreateDto)
         {
             var parentDto = await _parentService.AddAsync(parentCreateDto);
             return Ok(parentDto);

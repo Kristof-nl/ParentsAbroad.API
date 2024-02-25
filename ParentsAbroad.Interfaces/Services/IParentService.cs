@@ -1,5 +1,6 @@
 ﻿using ParentsAbroad.Contracts;
 using ParentsAbroad.Models.Models;
+using ParentsAbroad.Shared.Dto;
 using System.Linq.Expressions;
 
 namespace ParentsAbroad.Interfaces.Services
@@ -10,7 +11,7 @@ namespace ParentsAbroad.Interfaces.Services
         Task<ParentDto> GetByIdAsync(long id);
         Task<IList<ParentDto>> GetAllAsync();
         Task<IList<ParentDto>> GetAllParentsFromFamilyAsync(long familyId);
-        Task<ParentDto> AddAsync(ParentCreateUpdateDto parent);
+        Task<ResponseResult<ParentDto>> AddAsync(ParentCreateUpdateDto parent);
         Task<ParentDto> UpdateAsync(ParentCreateUpdateDto parent);
         Task<bool> DeleteAsync(long id);
     }

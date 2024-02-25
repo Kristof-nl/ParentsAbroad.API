@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ParentsAbroad.Contracts\ParentsAbroad.Contracts.csproj" />
     <ProjectReference Include="..\ParentsAbroad.Models\ParentsAbroad.Models.csproj" />
+    <ProjectReference Include="..\ParentsAbroad.Shared\ParentsAbroad.Shared.csproj" />
   </ItemGroup>
 
 </Project>

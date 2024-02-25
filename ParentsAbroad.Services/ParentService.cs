@@ -3,8 +3,10 @@ using ParentsAbroad.Contracts;
 using ParentsAbroad.Interfaces.Repositories;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Models.Models;
+using ParentsAbroad.Shared.Dto;
 using ParentsAbroad.Shared.Helpers;
 using System.Linq.Expressions;
+using ParentsAbroad.Shared.Enums;
 
 namespace ParentsAbroad.Services
 {
@@ -51,7 +53,7 @@ namespace ParentsAbroad.Services
         }
 
 
-        public async Task<ParentDto> AddAsync(ParentCreateUpdateDto parentCreateDto)
+        public async Task<ResponseResult<ParentDto>> AddAsync(ParentCreateUpdateDto parentCreateDto)
         {
             if (parentCreateDto.Id > 0)
             {
@@ -60,18 +62,36 @@ namespace ParentsAbroad.Services
 
             if (GetAllParentsFromFamilyAsync(parentCreateDto.FamilyId).Result.Count == 2 ) 
             {
-                throw new Exception("There are already two parents added to this family. In not possible to add more");
+                return new ResponseResult<ParentDto> 
+                {
+                    Message = "There are already two parents added to this family. In not possible to add more",
+                    MessageServerity = ResponsResultServerity.warning.ToString()
+                };
             }
 
             // Because of legal purpose parent need be at least 18 years old
-            IsParentToYoung(parentCreateDto.DateOfBirth);
+            var parenToYoung = DateTimeHelper.GetDifferenceInYears(parentCreateDto.DateOfBirth) < 18;
+
+            if (parenToYoung)
+            {
+                return new ResponseResult<ParentDto>
+                {
+                    Message = "You are to young to register as parent role",
+                    MessageServerity = ResponsResultServerity.warning.ToString()
+                };
+            }
 
 
             var parent = _mapper.Map<Parent>(parentCreateDto);
 
             var parentFromDb = await _parentRepository.SaveOrUpdateAsync(parent);
 
-            return _mapper.Map<ParentDto>(parentFromDb);
+            var parentDto = _mapper.Map<ParentDto>(parentFromDb);
+
+            return new ResponseResult<ParentDto>
+            {
+                ResponseObject = parentDto
+            };
         }
 
         public async Task<ParentDto> UpdateAsync(ParentCreateUpdateDto parentUpdateDto)
@@ -101,14 +121,6 @@ namespace ParentsAbroad.Services
             {
                 return await _parentRepository.DeleteAsync(id);
             }
-        }
-
-        private void IsParentToYoung(DateTime birthDate)
-        {
-           if (!DateTimeHelper.GetDifferenceInYears(birthDate))
-           {
-               throw new Exception($"You are to young to register as parent role");
-           }
         }
     }
 }
