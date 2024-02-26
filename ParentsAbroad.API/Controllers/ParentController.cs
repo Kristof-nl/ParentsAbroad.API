@@ -26,10 +26,10 @@ namespace ParentsAbroad.API.Controllers
         }
 
         [HttpGet]
-        [Route("{familyId}")]
-        public async Task<ActionResult<ParentDto>> GetFamilyById([FromRoute] long familyId)
+        [Route("{parentId}")]
+        public async Task<ActionResult<ParentDto>> GetParentById([FromRoute] long parentId)
         {
-            var parentDto = await _parentService.GetByIdAsync(familyId);
+            var parentDto = await _parentService.GetByIdAsync(parentId);
             return Ok(parentDto);
         }
 

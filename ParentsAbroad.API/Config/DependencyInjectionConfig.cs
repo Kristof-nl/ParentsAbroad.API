@@ -16,6 +16,7 @@ namespace ParentsAbroad.API.Config
 
             services.AddScoped<IFamilyService, FamilyService>();
             services.AddScoped<IParentService, ParentService>();
+            services.AddScoped<IChildService, ChildService>();
 
             #endregion
 
@@ -24,6 +25,7 @@ namespace ParentsAbroad.API.Config
 
             services.AddScoped<IFamilyRepository, FamilyRepository>();
             services.AddScoped<IParentRepository, ParentRepository>();
+            services.AddScoped<IChildRepository, ChildRepository>();
 
             #endregion
 

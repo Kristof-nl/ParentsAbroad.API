@@ -64,7 +64,7 @@ namespace ParentsAbroad.Services
             {
                 return new ResponseResult<ParentDto> 
                 {
-                    Message = "There are already two parents added to this family. In not possible to add more",
+                    Message = "There are already two parents added to this family. Is not possible to add more",
                     MessageServerity = ResponsResultServerity.warning.ToString()
                 };
             }
