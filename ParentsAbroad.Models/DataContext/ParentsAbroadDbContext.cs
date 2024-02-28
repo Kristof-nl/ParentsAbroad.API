@@ -16,7 +16,8 @@ namespace ParentsAbroad.Models.DataContext
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<ChildLanguage> ChildLanguages { get; set; }
-        
+        public DbSet<ParentLanguage> ParentLanguages { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace ParentsAbroad.Models.DataContext
             modelBuilder.ApplyConfiguration(new ParentConfig());
             modelBuilder.ApplyConfiguration(new LanguageConfig());
             modelBuilder.ApplyConfiguration(new ChildLanguageConfig());
+            modelBuilder.ApplyConfiguration(new ParentLanguageConfig());
         }
 
     }
