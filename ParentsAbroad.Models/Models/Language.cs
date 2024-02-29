@@ -1,6 +1,8 @@
-﻿namespace ParentsAbroad.Models.Models
+﻿using ParentsAbroad.Models.Models.Interfaces;
+
+namespace ParentsAbroad.Models.Models
 {
-    public class Language
+    public class Language : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

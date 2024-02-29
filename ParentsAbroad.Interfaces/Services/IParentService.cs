@@ -8,7 +8,7 @@ namespace ParentsAbroad.Interfaces.Services
     public interface IParentService
     {
         Task<ParentDto> GetByAsync(Expression<Func<Parent, bool>> filter);
-        Task<ParentDto> GetByIdAsync(long id);
+        Task<ParentDto> GetByIdAsync(long id, bool withRelations);
         Task<IList<ParentDto>> GetAllAsync();
         Task<IList<ParentDto>> GetAllParentsFromFamilyAsync(long familyId);
         Task<ResponseResult<ParentDto>> AddAsync(ParentCreateUpdateDto parent);
