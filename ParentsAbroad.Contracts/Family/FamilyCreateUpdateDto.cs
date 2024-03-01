@@ -1,4 +1,4 @@
-﻿namespace ParentsAbroad.Contracts
+﻿namespace ParentsAbroad.Contracts.Family
 {
     public class FamilyCreateUpdateDto
     {

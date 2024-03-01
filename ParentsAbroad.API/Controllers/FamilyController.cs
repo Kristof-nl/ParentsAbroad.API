@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ParentsAbroad.Interfaces.Services;
-using ParentsAbroad.Contracts;
+using ParentsAbroad.Contracts.Family;
 
 namespace ParentsAbroad.API.Controllers
 {

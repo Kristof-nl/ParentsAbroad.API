@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ParentsAbroad.Contracts;
 using ParentsAbroad.Interfaces.Repositories;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Models.Models;
@@ -7,6 +6,7 @@ using ParentsAbroad.Shared.Dto;
 using ParentsAbroad.Shared.Helpers;
 using System.Linq.Expressions;
 using ParentsAbroad.Shared.Enums;
+using ParentsAbroad.Contracts.Parent;
 
 namespace ParentsAbroad.Services
 {

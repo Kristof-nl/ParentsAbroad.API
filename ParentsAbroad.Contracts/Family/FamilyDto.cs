@@ -1,4 +1,7 @@
-﻿namespace ParentsAbroad.Contracts
+﻿using ParentsAbroad.Contracts.Child;
+using ParentsAbroad.Contracts.Parent;
+
+namespace ParentsAbroad.Contracts.Family
 {
     public class FamilyDto
     {

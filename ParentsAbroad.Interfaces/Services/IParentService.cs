@@ -1,4 +1,4 @@
-﻿using ParentsAbroad.Contracts;
+﻿using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Models.Models;
 using ParentsAbroad.Shared.Dto;
 using System.Linq.Expressions;

@@ -10,7 +10,7 @@ namespace ParentsAbroad.Models.DataContext.Configurations
         {
             builder.HasKey(pl => new { pl.ParentId, pl.LanguageId });
             builder.HasOne(pl => pl.Parent)
-                .WithMany(pl => pl.Languages)
+                .WithMany(pl => pl.ParentLanguages)
                 .HasForeignKey(pl => pl.ParentId);
             builder.HasOne(pl => pl.Language)
                .WithMany(pl => pl.Parents)

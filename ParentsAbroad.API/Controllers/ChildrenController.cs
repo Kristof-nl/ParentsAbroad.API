@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ParentsAbroad.Contracts;
+using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Shared.Dto;
 

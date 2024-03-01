@@ -13,5 +13,7 @@ namespace ParentsAbroad.Models.Models
        public DateTime DateOfBirth { get; set; }
        public int FamilyId { get; set; }
        public virtual Family Family { get; set; }
+       public virtual IList<Language> Languages { get; set; }
+
     }
 }

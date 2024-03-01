@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ParentsAbroad.Contracts;
+using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Interfaces.Repositories;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Models.Models;

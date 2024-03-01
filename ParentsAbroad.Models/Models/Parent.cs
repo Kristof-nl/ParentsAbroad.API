@@ -4,6 +4,6 @@ namespace ParentsAbroad.Models.Models
 {
     public class Parent : Person, IEntity
     {
-        public IList<ParentLanguage> Languages { get; set; }
+        public IList<ParentLanguage> ParentLanguages { get; set; }
     }
 }
