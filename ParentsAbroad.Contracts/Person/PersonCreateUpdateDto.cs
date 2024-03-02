@@ -1,4 +1,6 @@
-﻿namespace ParentsAbroad.Contracts.Person
+﻿using ParentsAbroad.Contracts.Language;
+
+namespace ParentsAbroad.Contracts.Person
 {
     public class PersonCreateUpdateDto
     {

@@ -26,6 +26,7 @@ namespace ParentsAbroad.API.Config
             services.AddScoped<IFamilyRepository, FamilyRepository>();
             services.AddScoped<IParentRepository, ParentRepository>();
             services.AddScoped<IChildRepository, ChildRepository>();
+            services.AddScoped<IParentLanguageRepository, ParentLanguageRepository>();
 
             #endregion
 

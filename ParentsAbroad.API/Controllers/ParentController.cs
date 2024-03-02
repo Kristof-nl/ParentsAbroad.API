@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Shared.Dto;
@@ -63,6 +64,14 @@ namespace ParentsAbroad.API.Controllers
         {
             var deleted = await _parentService.DeleteAsync(id);
             return Ok(deleted);
+        }
+
+        [HttpPost]
+        [Route("addlanguage")]
+        public async Task<ActionResult<bool>> AddLanguage([FromBody] AddLanguageDto addLanguageDto)
+        {
+            var added = await _parentService.AddLanguageAsync(addLanguageDto);
+            return Ok(added);
         }
     }
 }

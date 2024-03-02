@@ -40,9 +40,9 @@ namespace ParentsAbroad.Services
             return _mapper.Map<ChildDto>(parent);
         }
 
-        public async Task<ChildDto> GetByIdAsync(long id)
+        public async Task<ChildDto> GetByIdAsync(long id, bool withRelations)
         {
-            var child = await _childRepository.GetByIdAsync(id);
+            var child = withRelations ? await _childRepository.GetByIdWithRelationsAsync(id) : await _childRepository.GetByIdAsync(id);
 
             if (child == null)
             {

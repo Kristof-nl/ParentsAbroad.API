@@ -7,17 +7,22 @@ using ParentsAbroad.Shared.Helpers;
 using System.Linq.Expressions;
 using ParentsAbroad.Shared.Enums;
 using ParentsAbroad.Contracts.Parent;
+using ParentsAbroad.Contracts.Language;
 
 namespace ParentsAbroad.Services
 {
     public class ParentService : IParentService
     {
         private readonly IParentRepository _parentRepository;
+        private readonly IParentLanguageRepository _parentLanguageRepository;
         private readonly IMapper _mapper;
 
-        public ParentService(IParentRepository parentRepository, IMapper mapper)
+        public ParentService(IParentRepository parentRepository,
+            IParentLanguageRepository parentLanguageRepository,
+            IMapper mapper)
         {
             _parentRepository = parentRepository;
+            _parentLanguageRepository = parentLanguageRepository;
             _mapper = mapper;
         }
 
@@ -122,6 +127,22 @@ namespace ParentsAbroad.Services
             {
                 return await _parentRepository.DeleteAsync(id);
             }
+        }
+
+        public async Task<bool> AddLanguageAsync(AddLanguageDto addLanguageDto)
+        {
+            if (addLanguageDto.ParentId < 1 || addLanguageDto.LanguageId < 1)
+            {
+                throw new Exception("This item can't be added");
+            }
+
+            var newlanguageToAdd = new ParentLanguage()
+            {
+                ParentId = addLanguageDto.ParentId,
+                LanguageId = addLanguageDto.LanguageId
+            };
+
+            return await _parentLanguageRepository.AddLanguageAsync(newlanguageToAdd);
         }
     }
 }

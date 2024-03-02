@@ -21,16 +21,16 @@ namespace ParentsAbroad.API.Controllers
         [Route("getallchildren")]
         public async Task<ActionResult<IList<ChildDto>>> GetAllChildren()
         {
-            var parentDtos = await _childService.GetAllAsync();
-            return Ok(parentDtos);
+            var childDtos = await _childService.GetAllAsync();
+            return Ok(childDtos);
         }
 
         [HttpGet]
         [Route("{childId}")]
-        public async Task<ActionResult<ChildDto>> GetChildById([FromRoute] long familyId)
+        public async Task<ActionResult<ChildDto>> GetChildById([FromRoute] long childId, bool withRelations = true)
         {
-            var parentDto = await _childService.GetByIdAsync(familyId);
-            return Ok(parentDto);
+            var childDto = await _childService.GetByIdAsync(childId, withRelations);
+            return Ok(childDto);
         }
 
         [HttpGet]
@@ -45,16 +45,16 @@ namespace ParentsAbroad.API.Controllers
         [Route("addtofamily")]
         public async Task<ActionResult<ResponseResult<ChildDto>>> AddChildToFamily([FromBody] ChildCreateUpdateDto childCreateDto)
         {
-            var parentDto = await _childService.AddAsync(childCreateDto);
-            return Ok(parentDto);
+            var childDto = await _childService.AddAsync(childCreateDto);
+            return Ok(childDto);
         }
 
         [HttpPut]
         [Route("update")]
         public async Task<ActionResult<ChildDto>> UpdateChild([FromBody] ChildCreateUpdateDto childCreateDto)
         {
-            var parentDto = await _childService.UpdateAsync(childCreateDto);
-            return Ok(parentDto);
+            var childDto = await _childService.UpdateAsync(childCreateDto);
+            return Ok(childDto);
         }
 
         [HttpDelete]
@@ -62,7 +62,7 @@ namespace ParentsAbroad.API.Controllers
         public async Task<ActionResult<ChildDto>> DeleteChild([FromRoute] long id)
         {
             var deleted = await _childService.DeleteAsync(id);
-            return Ok(deleted);
+            return Ok(await _childService.DeleteAsync(id));
         }
     }
 }
