@@ -5,25 +5,25 @@ using ParentsAbroad.Models.Models;
 
 namespace ParentsAbroad.Repositories
 {
-    public class ParentLanguageRepository :  IParentLanguageRepository
+    public class ChildLanguageRepository : IChildLanguageRepository
     {
         private readonly ParentsAbroadDbContext _context;
 
-        public ParentLanguageRepository(ParentsAbroadDbContext context)
+        public ChildLanguageRepository(ParentsAbroadDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ParentLanguage> GetAsync(long parentId, long languageId)
+        public async Task<ChildLanguage> GetAsync(long childId, long languageId)
         {
-            return await _context.ParentLanguages.FirstOrDefaultAsync(x => x.ParentId == parentId && x.LanguageId == languageId);
+            return await _context.ChildLanguages.FirstOrDefaultAsync(x => x.ChildId == childId && x.LanguageId == languageId);
         }
 
-        public async Task<bool> AddLanguageAsync(ParentLanguage entity)
+        public async Task<bool> AddLanguageAsync(ChildLanguage entity)
         {
-            if (entity != null) 
+            if (entity != null)
             {
-                _context.ParentLanguages.Add(entity);
+                _context.ChildLanguages.Add(entity);
                 await _context.SaveChangesAsync();
             }
             else

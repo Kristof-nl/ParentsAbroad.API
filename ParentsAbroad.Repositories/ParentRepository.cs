@@ -17,5 +17,10 @@ namespace ParentsAbroad.Repositories
         {
             return await _context.Parents.Include(f => f.Family).Include(l => l.ParentLanguages).ThenInclude(x => x.Language).FirstOrDefaultAsync(x => x.Id == parentId);
         }
+
+        public async Task<IList<Parent>> GetAllParentsWithRelationsAsync()
+        {
+            return await _context.Parents.Include(f => f.Family).Include(l => l.ParentLanguages).ThenInclude(x => x.Language).ToListAsync();
+        }
     }
 }

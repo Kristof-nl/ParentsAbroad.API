@@ -20,9 +20,9 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("getallparents")]
-        public async Task<ActionResult<IList<ParentDto>>> GetAllParent()
+        public async Task<ActionResult<IList<ParentDto>>> GetAllParent(bool withRelations = true)
         {
-            var parentDtos = await _parentService.GetAllAsync();
+            var parentDtos = await _parentService.GetAllAsync(withRelations);
             return Ok(parentDtos);
         }
 
@@ -68,7 +68,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpPost]
         [Route("addlanguage")]
-        public async Task<ActionResult<bool>> AddLanguage([FromBody] AddLanguageDto addLanguageDto)
+        public async Task<ActionResult<ResponseResult<bool>>> AddLanguage([FromBody] AddLanguageDto addLanguageDto)
         {
             var added = await _parentService.AddLanguageAsync(addLanguageDto);
             return Ok(added);

@@ -1,4 +1,5 @@
 ﻿using ParentsAbroad.Contracts.Child;
+using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Models.Models;
 using ParentsAbroad.Shared.Dto;
 using System.Linq.Expressions;
@@ -14,5 +15,6 @@ namespace ParentsAbroad.Interfaces.Services
         Task<ResponseResult<ChildDto>> AddAsync(ChildCreateUpdateDto child);
         Task<ChildDto> UpdateAsync(ChildCreateUpdateDto child);
         Task<bool> DeleteAsync(long id);
+        Task<ResponseResult<bool>> AddLanguageAsync(AddLanguageDto addLanguageDto);
     }
 }

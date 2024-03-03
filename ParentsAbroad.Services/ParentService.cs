@@ -33,9 +33,9 @@ namespace ParentsAbroad.Services
             return _mapper.Map<IList<ParentDto>>(parents);
         }
 
-        public async Task<IList<ParentDto>> GetAllAsync()
+        public async Task<IList<ParentDto>> GetAllAsync(bool withRelations)
         {
-            var parents = await _parentRepository.GetAllAsync();
+            var parents = withRelations ? await _parentRepository.GetAllParentsWithRelationsAsync() : await _parentRepository.GetAllAsync();
             return _mapper.Map<IList<ParentDto>>(parents);
         }
 
@@ -129,20 +129,35 @@ namespace ParentsAbroad.Services
             }
         }
 
-        public async Task<bool> AddLanguageAsync(AddLanguageDto addLanguageDto)
+        public async Task<ResponseResult<bool>> AddLanguageAsync(AddLanguageDto addLanguageDto)
         {
-            if (addLanguageDto.ParentId < 1 || addLanguageDto.LanguageId < 1)
+            if (addLanguageDto.PersonId < 1 || addLanguageDto.LanguageId < 1)
             {
                 throw new Exception("This item can't be added");
             }
 
+            var entityFromDb = await _parentLanguageRepository.GetAsync(addLanguageDto.PersonId, addLanguageDto.LanguageId);
+
+            if (entityFromDb != null)
+            {
+                return new ResponseResult<bool>
+                {
+                    Message = "This language is already added",
+                    MessageServerity = ResponsResultServerity.info.ToString()
+                };
+            }
+
             var newlanguageToAdd = new ParentLanguage()
             {
-                ParentId = addLanguageDto.ParentId,
+                ParentId = addLanguageDto.PersonId,
                 LanguageId = addLanguageDto.LanguageId
             };
 
-            return await _parentLanguageRepository.AddLanguageAsync(newlanguageToAdd);
+
+            return new ResponseResult<bool>
+            {
+                ResponseObject = await _parentLanguageRepository.AddLanguageAsync(newlanguageToAdd)
+            };
         }
     }
 }
