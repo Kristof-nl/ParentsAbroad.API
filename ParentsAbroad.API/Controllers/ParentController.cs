@@ -17,6 +17,7 @@ namespace ParentsAbroad.API.Controllers
             _parentService = parentService;
         }
 
+        #region CRUD
 
         [HttpGet]
         [Route("getallparents")]
@@ -66,6 +67,10 @@ namespace ParentsAbroad.API.Controllers
             return Ok(deleted);
         }
 
+        #endregion
+
+        #region Language
+
         [HttpPost]
         [Route("addlanguage")]
         public async Task<ActionResult<ResponseResult<bool>>> AddLanguage([FromBody] AddLanguageDto addLanguageDto)
@@ -73,5 +78,15 @@ namespace ParentsAbroad.API.Controllers
             var added = await _parentService.AddLanguageAsync(addLanguageDto);
             return Ok(added);
         }
+
+        [HttpDelete]
+        [Route("deletelanguage/{parentId}/{languageId}")]
+        public async Task<ActionResult<ParentDto>> DeleteParent([FromRoute] long parentId, long languageId)
+        {
+            var deleted = await _parentService.DeleteLanguageAsync(parentId, languageId);
+            return Ok(deleted);
+        }
+
+        #endregion
     }
 }

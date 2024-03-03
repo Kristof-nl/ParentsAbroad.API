@@ -159,5 +159,21 @@ namespace ParentsAbroad.Services
                 ResponseObject = await _parentLanguageRepository.AddLanguageAsync(newlanguageToAdd)
             };
         }
+
+        public async Task<bool> DeleteLanguageAsync(long parentId, long languageId)
+        {
+            var entity = await _parentLanguageRepository.GetAsync(parentId, languageId);
+
+            if (entity == null)
+            {
+                throw new Exception($"Can't find language with id: {languageId} for parent with id: {parentId}");
+            }
+            else
+            {
+                return await _parentLanguageRepository.DeleteLanguageAsync(entity);
+            }
+        }
+
+
     }
 }

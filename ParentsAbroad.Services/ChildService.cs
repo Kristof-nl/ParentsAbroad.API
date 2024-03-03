@@ -33,9 +33,9 @@ namespace ParentsAbroad.Services
             return _mapper.Map<IList<ChildDto>>(children);
         }
 
-        public async Task<IList<ChildDto>> GetAllAsync()
+        public async Task<IList<ChildDto>> GetAllAsync(bool withRelations)
         {
-            var children = await _childRepository.GetAllAsync();
+            var children = withRelations ? await _childRepository.GetAllChildrenWithRelationsAsync() : await _childRepository.GetAllAsync();
             return _mapper.Map<IList<ChildDto>>(children);
         }
 
@@ -148,6 +148,20 @@ namespace ParentsAbroad.Services
             {
                 ResponseObject = await _childLanguageRepository.AddLanguageAsync(newlanguageToAdd)
             };
+        }
+
+        public async Task<bool> DeleteLanguageAsync(long childId, long languageId)
+        {
+            var entity = await _childLanguageRepository.GetAsync(childId, languageId);
+
+            if (entity == null)
+            {
+                throw new Exception($"Can't find language with id: {languageId} for child with id: {childId}");
+            }
+            else
+            {
+                return await _childLanguageRepository.DeleteLanguageAsync(entity);
+            }
         }
     }
 }

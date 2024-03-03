@@ -33,5 +33,16 @@ namespace ParentsAbroad.Repositories
 
             return true;
         }
+
+        public async Task<bool> DeleteLanguageAsync(ChildLanguage entity)
+        {
+            if (entity == null)
+            {
+                throw new Exception("Can't delete this language");
+            }
+
+            _context.Remove(entity);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

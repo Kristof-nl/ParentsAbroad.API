@@ -6,5 +6,6 @@ namespace ParentsAbroad.Interfaces.Repositories
     {
         Task<bool> AddLanguageAsync(ParentLanguage entity);
         Task<ParentLanguage> GetAsync(long parentId, long languageId);
+        Task<bool> DeleteLanguageAsync(ParentLanguage entity);
     }
 }

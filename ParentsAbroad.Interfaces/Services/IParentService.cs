@@ -16,5 +16,6 @@ namespace ParentsAbroad.Interfaces.Services
         Task<ParentDto> UpdateAsync(ParentCreateUpdateDto parent);
         Task<bool> DeleteAsync(long id);
         Task<ResponseResult<bool>> AddLanguageAsync(AddLanguageDto addLanguageDto);
+        Task<bool> DeleteLanguageAsync(long parentId, long languageId);
     }
 }
