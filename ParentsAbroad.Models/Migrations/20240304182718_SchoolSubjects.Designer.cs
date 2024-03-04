@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParentsAbroad.Models.DataContext;
 
@@ -11,9 +12,11 @@ using ParentsAbroad.Models.DataContext;
 namespace ParentsAbroad.Models.Migrations
 {
     [DbContext(typeof(ParentsAbroadDbContext))]
-    partial class ParentsAbroadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240304182718_SchoolSubjects")]
+    partial class SchoolSubjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,6 +107,9 @@ namespace ParentsAbroad.Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ChildId")
+                        .HasColumnType("int");
+
                     b.Property<string>("IsoCode")
                         .IsRequired()
                         .HasMaxLength(2)
@@ -114,7 +120,14 @@ namespace ParentsAbroad.Models.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ChildId");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Languages", (string)null);
                 });
@@ -227,6 +240,17 @@ namespace ParentsAbroad.Models.Migrations
                     b.Navigation("SchoolSubject");
                 });
 
+            modelBuilder.Entity("ParentsAbroad.Models.Models.Language", b =>
+                {
+                    b.HasOne("ParentsAbroad.Models.Models.Child", null)
+                        .WithMany("Languages")
+                        .HasForeignKey("ChildId");
+
+                    b.HasOne("ParentsAbroad.Models.Models.Parent", null)
+                        .WithMany("Languages")
+                        .HasForeignKey("ParentId");
+                });
+
             modelBuilder.Entity("ParentsAbroad.Models.Models.Parent", b =>
                 {
                     b.HasOne("ParentsAbroad.Models.Models.Family", "Family")
@@ -262,6 +286,8 @@ namespace ParentsAbroad.Models.Migrations
                     b.Navigation("ChildLanguages");
 
                     b.Navigation("ChildSchoolSubjects");
+
+                    b.Navigation("Languages");
                 });
 
             modelBuilder.Entity("ParentsAbroad.Models.Models.Family", b =>
@@ -280,6 +306,8 @@ namespace ParentsAbroad.Models.Migrations
 
             modelBuilder.Entity("ParentsAbroad.Models.Models.Parent", b =>
                 {
+                    b.Navigation("Languages");
+
                     b.Navigation("ParentLanguages");
                 });
 

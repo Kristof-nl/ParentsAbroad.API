@@ -2,9 +2,10 @@
 
 namespace ParentsAbroad.Models.Models
 {
-    public class Child : Person, IEntity
+    public class SchoolSubject : IEntity
     {
-        public IList<ChildLanguage> ChildLanguages { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public IList<ChildSchoolSubject> ChildSchoolSubjects { get; set; }
     }
 }
