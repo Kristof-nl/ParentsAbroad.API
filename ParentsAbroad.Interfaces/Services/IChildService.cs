@@ -1,4 +1,5 @@
-﻿using ParentsAbroad.Contracts.Child;
+﻿using ParentsAbroad.Contracts;
+using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Models.Models;
 using ParentsAbroad.Shared.Dto;
@@ -17,5 +18,7 @@ namespace ParentsAbroad.Interfaces.Services
         Task<bool> DeleteAsync(long id);
         Task<ResponseResult<bool>> AddLanguageAsync(AddLanguageDto addLanguageDto);
         Task<bool> DeleteLanguageAsync(long childId, long languageId);
+        Task<ResponseResult<bool>> AddSchoolSubjectAsync(AddSchoolSubjectDto addSchoolSubjectDto);
+        Task<bool> DeleteSchoolSubjectAsync(long childId, long schoolSubjectId);
     }
 }

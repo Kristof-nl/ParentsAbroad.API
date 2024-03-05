@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ParentsAbroad.Contracts;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Interfaces.Repositories;
@@ -15,14 +16,17 @@ namespace ParentsAbroad.Services
     {
         private readonly IChildRepository _childRepository;
         private readonly IChildLanguageRepository _childLanguageRepository;
+        private readonly IChildSchoolSubjectRepository _childSchoolSubjectRepository;
         private readonly IMapper _mapper;
 
         public ChildService(IChildRepository childRepository,
             IChildLanguageRepository childLanguageRepository,
+            IChildSchoolSubjectRepository childSchoolSubjectRepository,
             IMapper mapper)
         {
             _childRepository = childRepository;
             _childLanguageRepository = childLanguageRepository;
+            _childSchoolSubjectRepository = childSchoolSubjectRepository;
             _mapper = mapper;
         }
 
@@ -161,6 +165,51 @@ namespace ParentsAbroad.Services
             else
             {
                 return await _childLanguageRepository.DeleteLanguageAsync(entity);
+            }
+        }
+
+
+        public async Task<ResponseResult<bool>> AddSchoolSubjectAsync(AddSchoolSubjectDto addSchoolSubjectDto)
+        {
+            if (addSchoolSubjectDto.ChildId < 1 || addSchoolSubjectDto.SchoolSubjectId < 1)
+            {
+                throw new Exception("This item can't be added");
+            }
+
+            var entityFromDb = await _childSchoolSubjectRepository.GetAsync(addSchoolSubjectDto.ChildId, addSchoolSubjectDto.SchoolSubjectId);
+
+            if (entityFromDb != null)
+            {
+                return new ResponseResult<bool>
+                {
+                    Message = "This school subject is already added",
+                    MessageServerity = ResponsResultServerity.info.ToString()
+                };
+            }
+
+            var newlanguageToAdd = new ChildSchoolSubject()
+            {
+                ChildId = addSchoolSubjectDto.ChildId,
+                SchoolSubjectId = addSchoolSubjectDto.SchoolSubjectId
+            };
+
+            return new ResponseResult<bool>
+            {
+                ResponseObject = await _childSchoolSubjectRepository.AddSchoolSubjectAsync(newlanguageToAdd)
+            };
+        }
+
+        public async Task<bool> DeleteSchoolSubjectAsync(long childId, long schoolSubjectId)
+        {
+            var entity = await _childSchoolSubjectRepository.GetAsync(childId, schoolSubjectId);
+
+            if (entity == null)
+            {
+                throw new Exception($"Can't find school subject with id: {schoolSubjectId} for child with id: {childId}");
+            }
+            else
+            {
+                return await _childSchoolSubjectRepository.DeleteSchoolSubjectAsync(entity);
             }
         }
     }

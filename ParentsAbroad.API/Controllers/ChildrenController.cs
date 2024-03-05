@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ParentsAbroad.Contracts;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Contracts.Parent;
@@ -85,6 +86,26 @@ namespace ParentsAbroad.API.Controllers
         public async Task<ActionResult<ParentDto>> DeleteParent([FromRoute] long childId, long languageId)
         {
             var deleted = await _childService.DeleteLanguageAsync(childId, languageId);
+            return Ok(deleted);
+        }
+
+        #endregion Language
+
+        #region Language
+
+        [HttpPost]
+        [Route("addschoolsubject")]
+        public async Task<ActionResult<ResponseResult<bool>>> AddSchoolSubject([FromBody] AddSchoolSubjectDto addSchoolSubjectDto)
+        {
+            var added = await _childService.AddSchoolSubjectAsync(addSchoolSubjectDto);
+            return Ok(added);
+        }
+
+        [HttpDelete]
+        [Route("addschoolsubject/{childId}/{schoolSubjectId}")]
+        public async Task<ActionResult<ParentDto>> DeleteSchoolSubject([FromRoute] long childId, long schoolSubjectId)
+        {
+            var deleted = await _childService.DeleteSchoolSubjectAsync(childId, schoolSubjectId);
             return Ok(deleted);
         }
 
