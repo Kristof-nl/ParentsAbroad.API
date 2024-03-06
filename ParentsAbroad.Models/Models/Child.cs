@@ -6,5 +6,6 @@ namespace ParentsAbroad.Models.Models
     {
         public IList<ChildLanguage> ChildLanguages { get; set; }
         public IList<ChildSchoolSubject> ChildSchoolSubjects { get; set; }
+        public IList<ChildLikeToDo> ChildLikeToDoThings { get; set; }
     }
 }

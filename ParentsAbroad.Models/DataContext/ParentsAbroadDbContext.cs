@@ -8,7 +8,6 @@ namespace ParentsAbroad.Models.DataContext
     {
         public ParentsAbroadDbContext(DbContextOptions<ParentsAbroadDbContext> options) : base(options) 
         {
-            
         }
 
         public DbSet<Family> Families { get; set; }
@@ -19,6 +18,8 @@ namespace ParentsAbroad.Models.DataContext
         public DbSet<ParentLanguage> ParentLanguages { get; set; }
         public DbSet<SchoolSubject> SchoolSubjects { get; set; }
         public DbSet<ChildSchoolSubject> ChildSchoolSubjects { get; set; }
+        public DbSet<LikeToDo> LikeToDoThings { get; set; }
+        public DbSet<ChildLikeToDo> ChildLikeToDo { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,6 +32,8 @@ namespace ParentsAbroad.Models.DataContext
             modelBuilder.ApplyConfiguration(new ParentLanguageConfig());
             modelBuilder.ApplyConfiguration(new SchoolSubjectConfig());
             modelBuilder.ApplyConfiguration(new ChildSchoolSubjectConfig());
+            modelBuilder.ApplyConfiguration(new LikeToDoConfig());
+            modelBuilder.ApplyConfiguration(new ChildLikeToDoConfig());
         }
 
     }

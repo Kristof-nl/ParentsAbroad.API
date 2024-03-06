@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParentsAbroad.Models.DataContext;
 
@@ -11,9 +12,11 @@ using ParentsAbroad.Models.DataContext;
 namespace ParentsAbroad.Models.Migrations
 {
     [DbContext(typeof(ParentsAbroadDbContext))]
-    partial class ParentsAbroadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240306182900_ThingsToDo")]
+    partial class ThingsToDo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
