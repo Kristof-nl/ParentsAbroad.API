@@ -2,6 +2,7 @@
 using ParentsAbroad.Contracts;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Language;
+using ParentsAbroad.Contracts.LikeToDo;
 using ParentsAbroad.Interfaces.Repositories;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Models.Models;
@@ -17,16 +18,19 @@ namespace ParentsAbroad.Services
         private readonly IChildRepository _childRepository;
         private readonly IChildLanguageRepository _childLanguageRepository;
         private readonly IChildSchoolSubjectRepository _childSchoolSubjectRepository;
+        private readonly IChildLikeToDoRepository _childLikeToDoRepository;
         private readonly IMapper _mapper;
 
         public ChildService(IChildRepository childRepository,
             IChildLanguageRepository childLanguageRepository,
             IChildSchoolSubjectRepository childSchoolSubjectRepository,
+            IChildLikeToDoRepository childLikeToDoRepository,
             IMapper mapper)
         {
             _childRepository = childRepository;
             _childLanguageRepository = childLanguageRepository;
             _childSchoolSubjectRepository = childSchoolSubjectRepository;
+            _childLikeToDoRepository = childLikeToDoRepository;
             _mapper = mapper;
         }
 
@@ -168,7 +172,6 @@ namespace ParentsAbroad.Services
             }
         }
 
-
         public async Task<ResponseResult<bool>> AddSchoolSubjectAsync(AddSchoolSubjectDto addSchoolSubjectDto)
         {
             if (addSchoolSubjectDto.ChildId < 1 || addSchoolSubjectDto.SchoolSubjectId < 1)
@@ -210,6 +213,50 @@ namespace ParentsAbroad.Services
             else
             {
                 return await _childSchoolSubjectRepository.DeleteSchoolSubjectAsync(entity);
+            }
+        }
+
+        public async Task<ResponseResult<bool>> AddLikeToDoThingAsync(LikeToDoAddDto likeToDoAddDto)
+        {
+            if (likeToDoAddDto.ChildId < 1 || likeToDoAddDto.LikeToDoId < 1)
+            {
+                throw new Exception("This item can't be added");
+            }
+
+            var entityFromDb = await _childSchoolSubjectRepository.GetAsync(likeToDoAddDto.ChildId, likeToDoAddDto.LikeToDoId);
+
+            if (entityFromDb != null)
+            {
+                return new ResponseResult<bool>
+                {
+                    Message = "This leisure activity is already added",
+                    MessageServerity = ResponsResultServerity.info.ToString()
+                };
+            }
+
+            var newLikeToDoAdd = new ChildLikeToDo()
+            {
+                ChildId = likeToDoAddDto.ChildId,
+                LikeToDoId = likeToDoAddDto.LikeToDoId
+            };
+
+            return new ResponseResult<bool>
+            {
+                ResponseObject = await _childLikeToDoRepository.AddLikeToDoThingAsync(newLikeToDoAdd)
+            };
+        }
+
+        public async Task<bool> DeleteLikeToDoThingAsync(long childId, long likeToDoId)
+        {
+            var entity = await _childLikeToDoRepository.GetAsync(childId, likeToDoId);
+
+            if (entity == null)
+            {
+                throw new Exception($"Can't find leisure activity with id: {likeToDoId} for child with id: {childId}");
+            }
+            else
+            {
+                return await _childLikeToDoRepository.DeleteLikeToDoThingAsync(entity);
             }
         }
     }

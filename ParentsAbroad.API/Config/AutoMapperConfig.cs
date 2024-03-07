@@ -2,6 +2,7 @@
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Family;
 using ParentsAbroad.Contracts.Language;
+using ParentsAbroad.Contracts.LikeToDo;
 using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Contracts.School_Subject;
 using ParentsAbroad.Models.Models;
@@ -21,7 +22,9 @@ namespace ParentsAbroad.API.Config
                  .ForMember(dest => dest.Languages, opt =>
                 opt.MapFrom(src => src.ChildLanguages.Select(l => l.Language)))
                    .ForMember(dest => dest.SchoolSubjects, opt =>
-                opt.MapFrom(src => src.ChildSchoolSubjects.Select(l => l.SchoolSubject))); 
+                opt.MapFrom(src => src.ChildSchoolSubjects.Select(l => l.SchoolSubject)))
+                   .ForMember(dest => dest.LikeToDoThings, opt =>
+                opt.MapFrom(src => src.ChildLikeToDoThings.Select(l => l.LikeToDo)));
             CreateMap<ChildCreateUpdateDto, Child>();
 
 
@@ -33,8 +36,7 @@ namespace ParentsAbroad.API.Config
 
             CreateMap<Language, LanguageDto>();
             CreateMap<SchoolSubject, SchoolSubjectDto>();
-
-
+            CreateMap<LikeToDo, LikeToDoDto>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ParentsAbroad.Contracts.Language;
+using ParentsAbroad.Contracts.LikeToDo;
 using ParentsAbroad.Contracts.Person;
 using ParentsAbroad.Contracts.School_Subject;
 
@@ -8,5 +9,6 @@ namespace ParentsAbroad.Contracts.Child
     {
         public virtual IList<LanguageDto> Languages { get; set; }
         public virtual IList<SchoolSubjectDto> SchoolSubjects { get; set; }
+        public virtual IList<LikeToDoDto> LikeToDoThings { get; set; }
     }
 }

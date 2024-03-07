@@ -2,6 +2,7 @@
 using ParentsAbroad.Contracts;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Language;
+using ParentsAbroad.Contracts.LikeToDo;
 using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Interfaces.Services;
 using ParentsAbroad.Shared.Dto;
@@ -83,15 +84,15 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deletelanguage/{childId}/{languageId}")]
-        public async Task<ActionResult<ParentDto>> DeleteParent([FromRoute] long childId, long languageId)
+        public async Task<ActionResult<bool>> DeleteParent([FromRoute] long childId, long languageId)
         {
             var deleted = await _childService.DeleteLanguageAsync(childId, languageId);
             return Ok(deleted);
         }
 
-        #endregion Language
+        #endregion
 
-        #region Language
+        #region SchoolSubject
 
         [HttpPost]
         [Route("addschoolsubject")]
@@ -102,13 +103,33 @@ namespace ParentsAbroad.API.Controllers
         }
 
         [HttpDelete]
-        [Route("addschoolsubject/{childId}/{schoolSubjectId}")]
-        public async Task<ActionResult<ParentDto>> DeleteSchoolSubject([FromRoute] long childId, long schoolSubjectId)
+        [Route("deleteschoolsubject/{childId}/{schoolSubjectId}")]
+        public async Task<ActionResult<bool>> DeleteSchoolSubject([FromRoute] long childId, long schoolSubjectId)
         {
             var deleted = await _childService.DeleteSchoolSubjectAsync(childId, schoolSubjectId);
             return Ok(deleted);
         }
 
-        #endregion Language
+        #endregion
+
+        #region LikeToDo
+
+        [HttpPost]
+        [Route("addliketodothing")]
+        public async Task<ActionResult<ResponseResult<bool>>> AddLikeToDoThing([FromBody] LikeToDoAddDto addLikeToDoThingDto)
+        {
+            var added = await _childService.AddLikeToDoThingAsync(addLikeToDoThingDto);
+            return Ok(added);
+        }
+
+        [HttpDelete]
+        [Route("deleteliketodothing/{childId}/{liketodoId}")]
+        public async Task<ActionResult<bool>> DeleteLikeToDoThing([FromRoute] long childId, long liketodoId)
+        {
+            var deleted = await _childService.DeleteLikeToDoThingAsync(childId, liketodoId);
+            return Ok(deleted);
+        }
+
+        #endregion
     }
 }

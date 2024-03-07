@@ -1,6 +1,7 @@
 ﻿using ParentsAbroad.Contracts;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Language;
+using ParentsAbroad.Contracts.LikeToDo;
 using ParentsAbroad.Models.Models;
 using ParentsAbroad.Shared.Dto;
 using System.Linq.Expressions;
@@ -20,5 +21,7 @@ namespace ParentsAbroad.Interfaces.Services
         Task<bool> DeleteLanguageAsync(long childId, long languageId);
         Task<ResponseResult<bool>> AddSchoolSubjectAsync(AddSchoolSubjectDto addSchoolSubjectDto);
         Task<bool> DeleteSchoolSubjectAsync(long childId, long schoolSubjectId);
+        Task<ResponseResult<bool>> AddLikeToDoThingAsync(LikeToDoAddDto likeToDoAddDto);
+        Task<bool> DeleteLikeToDoThingAsync(long childId, long likeToDoId);
     }
 }
