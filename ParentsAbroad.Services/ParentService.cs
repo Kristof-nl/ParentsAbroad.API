@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using ParentsAbroad.Shared.Enums;
 using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Contracts.Language;
+using ParentsAbroad.Contracts.Hobby;
 
 namespace ParentsAbroad.Services
 {
@@ -15,14 +16,17 @@ namespace ParentsAbroad.Services
     {
         private readonly IParentRepository _parentRepository;
         private readonly IParentLanguageRepository _parentLanguageRepository;
+        private readonly IParentHobbyRepository _parentHobbyRepository;
         private readonly IMapper _mapper;
 
         public ParentService(IParentRepository parentRepository,
             IParentLanguageRepository parentLanguageRepository,
+            IParentHobbyRepository parentHobbyRepository,
             IMapper mapper)
         {
             _parentRepository = parentRepository;
             _parentLanguageRepository = parentLanguageRepository;
+            _parentHobbyRepository = parentHobbyRepository;
             _mapper = mapper;
         }
 
@@ -147,7 +151,7 @@ namespace ParentsAbroad.Services
                 };
             }
 
-            var newlanguageToAdd = new ParentLanguage()
+            var newLanguageToAdd = new ParentLanguage()
             {
                 ParentId = addLanguageDto.PersonId,
                 LanguageId = addLanguageDto.LanguageId
@@ -156,7 +160,7 @@ namespace ParentsAbroad.Services
 
             return new ResponseResult<bool>
             {
-                ResponseObject = await _parentLanguageRepository.AddLanguageAsync(newlanguageToAdd)
+                ResponseObject = await _parentLanguageRepository.AddLanguageAsync(newLanguageToAdd)
             };
         }
 
@@ -171,6 +175,51 @@ namespace ParentsAbroad.Services
             else
             {
                 return await _parentLanguageRepository.DeleteLanguageAsync(entity);
+            }
+        }
+
+        public async Task<ResponseResult<bool>> AddHobbyAsync(AddHobbyDto addHobbyDto)
+        {
+            if (addHobbyDto.ParentId < 1 || addHobbyDto.HobbyId < 1)
+            {
+                throw new Exception("This item can't be added");
+            }
+
+            var entityFromDb = await _parentHobbyRepository.GetAsync(addHobbyDto.ParentId, addHobbyDto.HobbyId);
+
+            if (entityFromDb != null)
+            {
+                return new ResponseResult<bool>
+                {
+                    Message = "This hobby is already added",
+                    MessageServerity = ResponsResultServerity.info.ToString()
+                };
+            }
+
+            var newHobbyToAdd = new ParentHobby()
+            {
+                ParentId = addHobbyDto.ParentId,
+                HobbyId = addHobbyDto.HobbyId
+            };
+
+
+            return new ResponseResult<bool>
+            {
+                ResponseObject = await _parentHobbyRepository.AddHobbyAsync(newHobbyToAdd)
+            };
+        }
+
+        public async Task<bool> DeleteHobbyAsync(long parentId, long hobbyId)
+        {
+            var entity = await _parentHobbyRepository.GetAsync(parentId, hobbyId);
+
+            if (entity == null)
+            {
+                throw new Exception($"Can't find hobby with id: {hobbyId} for parent with id: {parentId}");
+            }
+            else
+            {
+                return await _parentHobbyRepository.DeleteHobbyAsync(entity);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using ParentsAbroad.Contracts.Language;
+﻿using ParentsAbroad.Contracts.Hobby;
+using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Models.Models;
 using ParentsAbroad.Shared.Dto;
@@ -17,5 +18,7 @@ namespace ParentsAbroad.Interfaces.Services
         Task<bool> DeleteAsync(long id);
         Task<ResponseResult<bool>> AddLanguageAsync(AddLanguageDto addLanguageDto);
         Task<bool> DeleteLanguageAsync(long parentId, long languageId);
+        Task<ResponseResult<bool>> AddHobbyAsync(AddHobbyDto addHobbyDto);
+        Task<bool> DeleteHobbyAsync(long parentId, long hobbyId);
     }
 }

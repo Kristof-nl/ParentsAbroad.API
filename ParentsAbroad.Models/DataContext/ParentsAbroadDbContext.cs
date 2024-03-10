@@ -20,7 +20,7 @@ namespace ParentsAbroad.Models.DataContext
         public DbSet<ChildSchoolSubject> ChildSchoolSubjects { get; set; }
         public DbSet<LikeToDo> LikeToDoThings { get; set; }
         public DbSet<ChildLikeToDo> ChildLikeToDo { get; set; }
-        public DbSet<Hobby> Hobbys { get; set; }
+        public DbSet<Hobby> Hobbies { get; set; }
         public DbSet<ParentHobby> ParentHobby { get; set; }
 
 

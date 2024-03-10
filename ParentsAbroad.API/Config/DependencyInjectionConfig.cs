@@ -30,6 +30,7 @@ namespace ParentsAbroad.API.Config
             services.AddScoped<IChildLanguageRepository, ChildLanguageRepository>();
             services.AddScoped<IChildSchoolSubjectRepository, ChildSchoolSubjectRepository>();
             services.AddScoped<IChildLikeToDoRepository, ChildLikeToDoRepository>();
+            services.AddScoped<IParentHobbyRepository, ParentHobbyRepository>();
 
             #endregion
 

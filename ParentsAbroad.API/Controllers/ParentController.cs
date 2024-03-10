@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ParentsAbroad.Contracts.Hobby;
 using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Contracts.Parent;
 using ParentsAbroad.Interfaces.Services;
@@ -81,9 +82,29 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deletelanguage/{parentId}/{languageId}")]
-        public async Task<ActionResult<ParentDto>> DeleteParent([FromRoute] long parentId, long languageId)
+        public async Task<ActionResult<ParentDto>> DeleteLanguage([FromRoute] long parentId, long languageId)
         {
             var deleted = await _parentService.DeleteLanguageAsync(parentId, languageId);
+            return Ok(deleted);
+        }
+
+        #endregion
+
+        #region Hobby
+
+        [HttpPost]
+        [Route("addhobby")]
+        public async Task<ActionResult<ResponseResult<bool>>> AddHobby([FromBody] AddHobbyDto addHobbyDto)
+        {
+            var added = await _parentService.AddHobbyAsync(addHobbyDto);
+            return Ok(added);
+        }
+
+        [HttpDelete]
+        [Route("deletehobby/{parentId}/{hobbyId}")]
+        public async Task<ActionResult<ParentDto>> DeleteHobby([FromRoute] long parentId, long hobbyId)
+        {
+            var deleted = await _parentService.DeleteHobbyAsync(parentId, hobbyId);
             return Ok(deleted);
         }
 

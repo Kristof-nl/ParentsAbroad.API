@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Family;
+using ParentsAbroad.Contracts.Hobby;
 using ParentsAbroad.Contracts.Language;
 using ParentsAbroad.Contracts.LikeToDo;
 using ParentsAbroad.Contracts.Parent;
@@ -30,13 +31,16 @@ namespace ParentsAbroad.API.Config
 
             CreateMap<Parent, ParentDto>()
                 .ForMember(dest => dest.Languages, opt =>
-                opt.MapFrom(src => src.ParentLanguages.Select(l => l.Language)));
+                opt.MapFrom(src => src.ParentLanguages.Select(l => l.Language)))
+                 .ForMember(dest => dest.Hobbies, opt =>
+                opt.MapFrom(src => src.ParentHobbys.Select(l => l.Hobby)));
             CreateMap<ParentCreateUpdateDto, Parent>();
 
 
             CreateMap<Language, LanguageDto>();
             CreateMap<SchoolSubject, SchoolSubjectDto>();
             CreateMap<LikeToDo, LikeToDoDto>();
+            CreateMap<Hobby, HobbyDto>();
         }
     }
 }

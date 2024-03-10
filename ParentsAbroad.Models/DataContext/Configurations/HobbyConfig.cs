@@ -8,7 +8,7 @@ namespace ParentsAbroad.Models.DataContext.Configurations
     {
         public void Configure(EntityTypeBuilder<Hobby> builder)
         {
-            builder.ToTable("Hobbys");
+            builder.ToTable("Hobbies");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
