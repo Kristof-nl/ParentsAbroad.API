@@ -12,6 +12,10 @@ namespace ParentsAbroad.Models.DataContext.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+            builder.HasOne(a => a.Address)
+                .WithOne(f => f.Family)
+                .HasForeignKey<Address>(x => x.FamilyId);
+
         }
     }
 }

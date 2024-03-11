@@ -16,12 +16,13 @@ namespace ParentsAbroad.Repositories
 
         public async Task<IList<Family>> GetFamiliesWithRelationsAsync()
         {
-            return await _context.Families.Include(p => p.Parents).ThenInclude(x => x.ParentLanguages).ThenInclude(l => l.Language).Include(c => c.Children).ToListAsync();
+            return await _context.Families.Include(p => p.Parents).ThenInclude(x => x.ParentLanguages).ThenInclude(l => l.Language)
+                .Include(c => c.Children).Include(a => a.Address).ToListAsync();
         }
 
-        public async Task<Family> GetFamilyWithRelationsAsync(long familyId)
+        public async Task<Family> GetFamilyWithRelationsAsync(int familyId)
         {
-            return await _context.Families.Include(p => p.Parents).Include(c => c.Children).FirstOrDefaultAsync(x => x.Id == familyId);
+            return await _context.Families.Include(p => p.Parents).Include(c => c.Children).Include(a => a.Address).FirstOrDefaultAsync(x => x.Id == familyId);
         }
     }
 }

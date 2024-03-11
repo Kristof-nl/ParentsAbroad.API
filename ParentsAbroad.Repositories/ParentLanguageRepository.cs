@@ -14,7 +14,7 @@ namespace ParentsAbroad.Repositories
             _context = context;
         }
 
-        public async Task<ParentLanguage> GetAsync(long parentId, long languageId)
+        public async Task<ParentLanguage> GetAsync(int parentId, int languageId)
         {
             return await _context.ParentLanguages.FirstOrDefaultAsync(x => x.ParentId == parentId && x.LanguageId == languageId);
         }

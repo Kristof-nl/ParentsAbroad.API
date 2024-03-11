@@ -5,7 +5,7 @@ namespace ParentsAbroad.Interfaces.Repositories
     public interface IParentHobbyRepository
     {
         Task<bool> AddHobbyAsync(ParentHobby entity);
-        Task<ParentHobby> GetAsync(long parentId, long languageId);
+        Task<ParentHobby> GetAsync(int parentId, int languageId);
         Task<bool> DeleteHobbyAsync(ParentHobby entity);
     }
 }

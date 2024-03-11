@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ParentsAbroad.Contracts.Address;
 using ParentsAbroad.Contracts.Child;
 using ParentsAbroad.Contracts.Family;
 using ParentsAbroad.Contracts.Hobby;
@@ -41,6 +42,8 @@ namespace ParentsAbroad.API.Config
             CreateMap<SchoolSubject, SchoolSubjectDto>();
             CreateMap<LikeToDo, LikeToDoDto>();
             CreateMap<Hobby, HobbyDto>();
+            CreateMap<Address, AddressDto>().ReverseMap();
+
         }
     }
 }

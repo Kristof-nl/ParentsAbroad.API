@@ -5,6 +5,6 @@ namespace ParentsAbroad.Interfaces.Repositories
     public interface IFamilyRepository : IBaseRepository<Family>
     {
         Task<IList<Family>> GetFamiliesWithRelationsAsync();
-        Task<Family> GetFamilyWithRelationsAsync(long familyId);
+        Task<Family> GetFamilyWithRelationsAsync(int familyId);
     }
 }

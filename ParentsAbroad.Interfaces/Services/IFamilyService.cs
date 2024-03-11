@@ -7,10 +7,10 @@ namespace ParentsAbroad.Interfaces.Services
     public interface IFamilyService
     {
         Task<FamilyDto> GetByAsync(Expression<Func<Family, bool>> filter);
-        Task<FamilyDto> GetByIdAsync(long id, bool withRelations);
+        Task<FamilyDto> GetByIdAsync(int id, bool withRelations);
         Task<IList<FamilyDto>> GetAllAsync(bool withRelations);
         Task<FamilyDto> AddAsync(FamilyCreateUpdateDto family);
         Task<FamilyDto> UpdateAsync(FamilyCreateUpdateDto family);
-        Task<bool> DeleteAsync(long id);
+        Task<bool> DeleteAsync(int id);
     }
 }

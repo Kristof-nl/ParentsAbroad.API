@@ -31,7 +31,7 @@ namespace ParentsAbroad.Services
         }
 
 
-        public async Task<IList<ParentDto>> GetAllParentsFromFamilyAsync(long familyId)
+        public async Task<IList<ParentDto>> GetAllParentsFromFamilyAsync(int familyId)
         {
             var parents = await _parentRepository.GetByAsync(x => x.FamilyId == familyId);
             return _mapper.Map<IList<ParentDto>>(parents);
@@ -49,7 +49,7 @@ namespace ParentsAbroad.Services
             return _mapper.Map<ParentDto>(parent);
         }
 
-        public async Task<ParentDto> GetByIdAsync(long id, bool withRelations)
+        public async Task<ParentDto> GetByIdAsync(int id, bool withRelations)
         {
 
             var parent = withRelations ? await _parentRepository.GetParentWithRelationsAsync(id) : await _parentRepository.GetByIdAsync(id);
@@ -119,7 +119,7 @@ namespace ParentsAbroad.Services
         }
 
 
-        public async Task<bool> DeleteAsync(long id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var parent = await _parentRepository.GetByIdAsync(id);
 
@@ -164,7 +164,7 @@ namespace ParentsAbroad.Services
             };
         }
 
-        public async Task<bool> DeleteLanguageAsync(long parentId, long languageId)
+        public async Task<bool> DeleteLanguageAsync(int parentId, int languageId)
         {
             var entity = await _parentLanguageRepository.GetAsync(parentId, languageId);
 
@@ -209,7 +209,7 @@ namespace ParentsAbroad.Services
             };
         }
 
-        public async Task<bool> DeleteHobbyAsync(long parentId, long hobbyId)
+        public async Task<bool> DeleteHobbyAsync(int parentId, int hobbyId)
         {
             var entity = await _parentHobbyRepository.GetAsync(parentId, hobbyId);
 

@@ -22,6 +22,7 @@ namespace ParentsAbroad.Models.DataContext
         public DbSet<ChildLikeToDo> ChildLikeToDo { get; set; }
         public DbSet<Hobby> Hobbies { get; set; }
         public DbSet<ParentHobby> ParentHobby { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,7 +39,8 @@ namespace ParentsAbroad.Models.DataContext
             modelBuilder.ApplyConfiguration(new ChildLikeToDoConfig());
             modelBuilder.ApplyConfiguration(new HobbyConfig());
             modelBuilder.ApplyConfiguration(new ParentHobbyConfig());
-        }
+            modelBuilder.ApplyConfiguration(new AddressConfig());
+    }
 
     }
 }

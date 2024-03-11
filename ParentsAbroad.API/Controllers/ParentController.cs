@@ -30,7 +30,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("{parentId}")]
-        public async Task<ActionResult<ParentDto>> GetParentById([FromRoute] long parentId, bool withRelations = true)
+        public async Task<ActionResult<ParentDto>> GetParentById([FromRoute] int parentId, bool withRelations = true)
         {
             var parentDto = await _parentService.GetByIdAsync(parentId, withRelations);
             return Ok(parentDto);
@@ -38,7 +38,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("parentsfromfamily/{familyId}")]
-        public async Task<ActionResult<IList<ParentDto>>> GetAllParentsFromFamily([FromRoute] long familyId)
+        public async Task<ActionResult<IList<ParentDto>>> GetAllParentsFromFamily([FromRoute] int familyId)
         {
             var parentDtos = await _parentService.GetAllParentsFromFamilyAsync(familyId);
             return Ok(parentDtos);
@@ -62,7 +62,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<ActionResult<ParentDto>> DeleteParent([FromRoute] long id)
+        public async Task<ActionResult<ParentDto>> DeleteParent([FromRoute] int id)
         {
             var deleted = await _parentService.DeleteAsync(id);
             return Ok(deleted);
@@ -82,7 +82,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deletelanguage/{parentId}/{languageId}")]
-        public async Task<ActionResult<ParentDto>> DeleteLanguage([FromRoute] long parentId, long languageId)
+        public async Task<ActionResult<ParentDto>> DeleteLanguage([FromRoute] int parentId, int languageId)
         {
             var deleted = await _parentService.DeleteLanguageAsync(parentId, languageId);
             return Ok(deleted);
@@ -102,7 +102,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deletehobby/{parentId}/{hobbyId}")]
-        public async Task<ActionResult<ParentDto>> DeleteHobby([FromRoute] long parentId, long hobbyId)
+        public async Task<ActionResult<ParentDto>> DeleteHobby([FromRoute] int parentId, int hobbyId)
         {
             var deleted = await _parentService.DeleteHobbyAsync(parentId, hobbyId);
             return Ok(deleted);

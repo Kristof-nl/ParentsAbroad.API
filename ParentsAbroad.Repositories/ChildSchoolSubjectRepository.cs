@@ -14,7 +14,7 @@ namespace ParentsAbroad.Repositories
             _context = context;
         }
 
-        public async Task<ChildSchoolSubject> GetAsync(long childId, long schoolSubjectId)
+        public async Task<ChildSchoolSubject> GetAsync(int childId, int schoolSubjectId)
         {
             return await _context.ChildSchoolSubjects.FirstOrDefaultAsync(x => x.ChildId == childId && x.SchoolSubjectId == schoolSubjectId);
         }

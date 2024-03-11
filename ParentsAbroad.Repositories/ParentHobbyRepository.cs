@@ -14,7 +14,7 @@ namespace ParentsAbroad.Repositories
             _context = context;
         }
 
-        public async Task<ParentHobby> GetAsync(long parentId, long hobbyId)
+        public async Task<ParentHobby> GetAsync(int parentId, int hobbyId)
         {
             return await _context.ParentHobby.FirstOrDefaultAsync(x => x.ParentId == parentId && x.HobbyId == hobbyId);
         }

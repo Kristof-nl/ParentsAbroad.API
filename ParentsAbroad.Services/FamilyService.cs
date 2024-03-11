@@ -31,7 +31,7 @@ namespace ParentsAbroad.Services
             return _mapper.Map<FamilyDto>(family);
         }
 
-        public async Task<FamilyDto> GetByIdAsync(long id, bool withRelations)
+        public async Task<FamilyDto> GetByIdAsync(int id, bool withRelations)
         {
             var family = withRelations ? await _familyRepository.GetFamilyWithRelationsAsync(id) : await _familyRepository.GetByIdAsync(id);
 
@@ -66,6 +66,7 @@ namespace ParentsAbroad.Services
             }
 
             var family = _mapper.Map<Family>(familyUpdateDto);
+            family.Address.FamilyId = familyUpdateDto.Id;
 
             var familyFromDb = await _familyRepository.SaveOrUpdateAsync(family);
 
@@ -73,7 +74,7 @@ namespace ParentsAbroad.Services
         }
     
 
-        public async Task<bool> DeleteAsync(long id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var family = await _familyRepository.GetByIdAsync(id);
 

@@ -6,6 +6,7 @@ namespace ParentsAbroad.Models.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Address Address { get; set; }
         public IList<Child> Children { get; set; }
         public IList<Parent> Parents { get; set; }
     }

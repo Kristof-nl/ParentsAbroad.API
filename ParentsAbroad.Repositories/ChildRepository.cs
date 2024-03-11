@@ -12,7 +12,7 @@ namespace ParentsAbroad.Repositories
         {
             _context = context;
         }
-        public async Task<Child> GetByIdWithRelationsAsync(long childId)
+        public async Task<Child> GetByIdWithRelationsAsync(int childId)
         {
             return await _context.Children.Include(f => f.Family).Include(l => l.ChildLanguages).ThenInclude(x => x.Language)
                 .Include(css => css.ChildSchoolSubjects).ThenInclude(ss => ss.SchoolSubject)

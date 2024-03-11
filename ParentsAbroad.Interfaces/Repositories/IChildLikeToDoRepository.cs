@@ -5,7 +5,7 @@ namespace ParentsAbroad.Interfaces.Repositories
     public interface IChildLikeToDoRepository
     {
         Task<bool> AddLikeToDoThingAsync(ChildLikeToDo entity);
-        Task<ChildLikeToDo> GetAsync(long childId, long likeToDoId);
+        Task<ChildLikeToDo> GetAsync(int childId, int likeToDoId);
         Task<bool> DeleteLikeToDoThingAsync(ChildLikeToDo entity);
     }
 }

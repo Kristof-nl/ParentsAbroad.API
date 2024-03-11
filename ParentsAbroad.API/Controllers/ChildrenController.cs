@@ -31,7 +31,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("{childId}")]
-        public async Task<ActionResult<ChildDto>> GetChildById([FromRoute] long childId, bool withRelations = true)
+        public async Task<ActionResult<ChildDto>> GetChildById([FromRoute] int childId, bool withRelations = true)
         {
             var childDto = await _childService.GetByIdAsync(childId, withRelations);
             return Ok(childDto);
@@ -39,7 +39,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("childrenfromfamily/{familyId}")]
-        public async Task<ActionResult<IList<ChildDto>>> GetAllChildrenFromFamily([FromRoute] long familyId)
+        public async Task<ActionResult<IList<ChildDto>>> GetAllChildrenFromFamily([FromRoute] int familyId)
         {
             var parentDtos = await _childService.GetAllChildrenFromFamilyAsync(familyId);
             return Ok(parentDtos);
@@ -63,7 +63,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<ActionResult<ChildDto>> DeleteChild([FromRoute] long id)
+        public async Task<ActionResult<ChildDto>> DeleteChild([FromRoute] int id)
         {
             var deleted = await _childService.DeleteAsync(id);
             return Ok(await _childService.DeleteAsync(id));
@@ -83,7 +83,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deletelanguage/{childId}/{languageId}")]
-        public async Task<ActionResult<bool>> DeleteParent([FromRoute] long childId, long languageId)
+        public async Task<ActionResult<bool>> DeleteParent([FromRoute] int childId, int languageId)
         {
             var deleted = await _childService.DeleteLanguageAsync(childId, languageId);
             return Ok(deleted);
@@ -103,7 +103,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deleteschoolsubject/{childId}/{schoolSubjectId}")]
-        public async Task<ActionResult<bool>> DeleteSchoolSubject([FromRoute] long childId, long schoolSubjectId)
+        public async Task<ActionResult<bool>> DeleteSchoolSubject([FromRoute] int childId, int schoolSubjectId)
         {
             var deleted = await _childService.DeleteSchoolSubjectAsync(childId, schoolSubjectId);
             return Ok(deleted);
@@ -123,7 +123,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("deleteliketodothing/{childId}/{liketodoId}")]
-        public async Task<ActionResult<bool>> DeleteLikeToDoThing([FromRoute] long childId, long liketodoId)
+        public async Task<ActionResult<bool>> DeleteLikeToDoThing([FromRoute] int childId, int liketodoId)
         {
             var deleted = await _childService.DeleteLikeToDoThingAsync(childId, liketodoId);
             return Ok(deleted);

@@ -17,7 +17,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<FamilyDto>> GetFamilyById( [FromRoute] long id, bool withRelations = true)
+        public async Task<ActionResult<FamilyDto>> GetFamilyById( [FromRoute] int id, bool withRelations = true)
         {
             var familyDto = await _familyService.GetByIdAsync(id, withRelations);
             return Ok(familyDto);
@@ -49,7 +49,7 @@ namespace ParentsAbroad.API.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public async Task<ActionResult<bool>> DeleteFamily([FromRoute] long id)
+        public async Task<ActionResult<bool>> DeleteFamily([FromRoute] int id)
         {
             var deleted = await _familyService.DeleteAsync(id);
             return Ok(deleted);

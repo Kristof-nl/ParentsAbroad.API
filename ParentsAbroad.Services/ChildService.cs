@@ -35,7 +35,7 @@ namespace ParentsAbroad.Services
         }
 
 
-        public async Task<IList<ChildDto>> GetAllChildrenFromFamilyAsync(long familyId)
+        public async Task<IList<ChildDto>> GetAllChildrenFromFamilyAsync(int familyId)
         {
             var children = await _childRepository.GetByAsync(x => x.FamilyId == familyId);
             return _mapper.Map<IList<ChildDto>>(children);
@@ -53,7 +53,7 @@ namespace ParentsAbroad.Services
             return _mapper.Map<ChildDto>(parent);
         }
 
-        public async Task<ChildDto> GetByIdAsync(long id, bool withRelations)
+        public async Task<ChildDto> GetByIdAsync(int id, bool withRelations)
         {
             var child = withRelations ? await _childRepository.GetByIdWithRelationsAsync(id) : await _childRepository.GetByIdAsync(id);
 
@@ -114,7 +114,7 @@ namespace ParentsAbroad.Services
         }
 
 
-        public async Task<bool> DeleteAsync(long id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var child = await _childRepository.GetByIdAsync(id);
 
@@ -158,7 +158,7 @@ namespace ParentsAbroad.Services
             };
         }
 
-        public async Task<bool> DeleteLanguageAsync(long childId, long languageId)
+        public async Task<bool> DeleteLanguageAsync(int childId, int languageId)
         {
             var entity = await _childLanguageRepository.GetAsync(childId, languageId);
 
@@ -202,7 +202,7 @@ namespace ParentsAbroad.Services
             };
         }
 
-        public async Task<bool> DeleteSchoolSubjectAsync(long childId, long schoolSubjectId)
+        public async Task<bool> DeleteSchoolSubjectAsync(int childId, int schoolSubjectId)
         {
             var entity = await _childSchoolSubjectRepository.GetAsync(childId, schoolSubjectId);
 
@@ -246,7 +246,7 @@ namespace ParentsAbroad.Services
             };
         }
 
-        public async Task<bool> DeleteLikeToDoThingAsync(long childId, long likeToDoId)
+        public async Task<bool> DeleteLikeToDoThingAsync(int childId, int likeToDoId)
         {
             var entity = await _childLikeToDoRepository.GetAsync(childId, likeToDoId);
 

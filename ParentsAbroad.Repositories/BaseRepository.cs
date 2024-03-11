@@ -42,7 +42,7 @@ namespace ParentsAbroad.Repositories
             return entity;
         }
 
-        public async Task<bool> DeleteAsync(long id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var existingEntity = _dbSet.FirstOrDefault(x => x.Id == id);
 
@@ -65,7 +65,7 @@ namespace ParentsAbroad.Repositories
             return await _dbSet.Where(filter).ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(long id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }
